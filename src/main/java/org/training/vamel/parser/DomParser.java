@@ -47,6 +47,7 @@ public class DomParser {
 
 	private void parseDocument() {
 		Element docElement = dom.getDocumentElement();
+		System.out.println("get ns: " + docElement.getAttribute("xmlns:employees")); 
 		NodeList nodeList = docElement.getElementsByTagName("Employee");
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
