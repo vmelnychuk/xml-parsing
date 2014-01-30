@@ -15,11 +15,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class Parser {
+public class DomParser {
 	private List<Employee> employeeList;
 	Document dom;
 
-	public Parser() {
+	public DomParser() {
 		employeeList = new ArrayList<Employee>();
 	}
 	public void runParser() {
@@ -28,7 +28,7 @@ public class Parser {
 		this.printData();
 	}
 	public static void main(String[] args) {
-		Parser parser = new Parser();
+		DomParser parser = new DomParser();
 		parser.runParser();
 	}
 	private void parseXmlFile() {
