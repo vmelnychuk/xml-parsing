@@ -1,5 +1,7 @@
 package org.training.vamel;
 
+import org.training.vamel.parser.DomParser;
+import org.training.vamel.parser.SaxParser;
 import org.training.vamel.validator.XmlValidator;
 
 public class App 
@@ -14,5 +16,12 @@ public class App
         boolean dtdValid = validator.validateDTD(DTD_FILE, XML_FILE);
         System.out.println("Validation with XSD: " + xsdValid);
         System.out.println("Validation with DTD: " + dtdValid);
+        
+        DomParser domParser = new DomParser();
+		domParser.runParser();
+        
+		SaxParser saxParser = new SaxParser();
+		saxParser.runParser();
+        
     }
 }

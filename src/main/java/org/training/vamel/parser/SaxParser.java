@@ -9,6 +9,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.training.vamel.App;
 import org.training.vamel.model.Employee;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -31,7 +32,7 @@ public class SaxParser extends DefaultHandler {
 		SAXParserFactory factory = SAXParserFactory.newInstance();
 		try {
 			SAXParser parser = factory.newSAXParser();
-			parser.parse("employees.xml", this);
+			parser.parse(App.XML_FILE, this);
 		} catch (SAXException e) {
 			e.printStackTrace();
 		} catch (ParserConfigurationException e) {
@@ -42,7 +43,7 @@ public class SaxParser extends DefaultHandler {
 	}
 	
 	private void printData() {
-		System.out.println("Number of employees " + employees.size());
+		System.out.println("from SAX parser:\nNumber of employees: " + employees.size());
 		Iterator<Employee> iterator = employees.iterator();
 		while(iterator.hasNext()) {
 			System.out.println(iterator.next().toString());
@@ -73,9 +74,5 @@ public class SaxParser extends DefaultHandler {
 		} else if (qName.equalsIgnoreCase("Age")) {
 			tempEmployee.setAge(Integer.parseInt(tempValue));
 		}
-	}
-	public static void main(String[] args){
-		SaxParser parser = new SaxParser();
-		parser.runParser();
 	}
 }

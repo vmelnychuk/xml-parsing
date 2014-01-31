@@ -15,7 +15,6 @@ import javax.xml.validation.Validator;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 public class XmlValidator {
 	public XmlValidator() {
@@ -42,24 +41,28 @@ public class XmlValidator {
 	}
 
 	public boolean validateDTD(String dtdFileName, String xmlFileName) {
-		File dtdFile = new File(dtdFileName);
+		boolean isValid = true;
 		File xmlFile = new File(xmlFileName);
 		try {
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
 			factory.setValidating(true);
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			ErrorHandler errorHandler = new DocumentErrorHandler();
+			ValidationErrorHandler errorHandler = new ValidationErrorHandler();
 			builder.setErrorHandler(errorHandler);
 			Document document = builder.parse(xmlFile);
+			isValid = errorHandler.isValid();
 		} catch (ParserConfigurationException e) {
 			System.out.println(e.toString());
+			isValid = false;
 		} catch (SAXException e) {
 			System.out.println(e.toString());
+			isValid = false;
 		} catch (IOException e) {
 			System.out.println(e.toString());
+			isValid = false;
 		}
-		return true;
+		return isValid;
 	}
 
 }

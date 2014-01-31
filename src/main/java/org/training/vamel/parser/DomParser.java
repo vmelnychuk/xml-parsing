@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.training.vamel.App;
 import org.training.vamel.model.Employee;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -27,15 +28,11 @@ public class DomParser {
 		this.parseDocument();
 		this.printData();
 	}
-	public static void main(String[] args) {
-		DomParser parser = new DomParser();
-		parser.runParser();
-	}
 	private void parseXmlFile() {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		try {
 			DocumentBuilder builder = dbFactory.newDocumentBuilder();
-			dom = builder.parse("employees.xml");
+			dom = builder.parse(App.XML_FILE);
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
 		} catch (SAXException e) {
@@ -47,7 +44,6 @@ public class DomParser {
 
 	private void parseDocument() {
 		Element docElement = dom.getDocumentElement();
-		System.out.println("get ns: " + docElement.getAttribute("xmlns:employees")); 
 		NodeList nodeList = docElement.getElementsByTagName("Employee");
 		if (nodeList != null && nodeList.getLength() > 0) {
 			for (int i = 0; i < nodeList.getLength(); i++) {
@@ -60,7 +56,7 @@ public class DomParser {
 	}
 
 	private void printData() {
-		System.out.println("Number of Employees '" + employeeList.size() + "'.");
+		System.out.println("from DOM parser:\nNumber of Employees: " + employeeList.size());
 		Iterator<Employee> it = employeeList.iterator();
 		while (it.hasNext()) {
 			System.out.println(it.next().toString());

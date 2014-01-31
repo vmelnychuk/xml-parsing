@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Personnel SYSTEM "emplyoees.dtd">
+<!DOCTYPE Personnel SYSTEM "employees.dtd">
 <Personnel>
 	<Employee type="permanent">
 		<Name>Bob</Name>

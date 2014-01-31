@@ -1,22 +1,8 @@
 <?xml encoding="UTF-8"?>
-
 <!ELEMENT Personnel (Employee)+>
-<!ATTLIST Personnel
-  xmlns CDATA #FIXED ''>
-
 <!ELEMENT Employee (Name,Id,Age)>
 <!ATTLIST Employee
-  xmlns CDATA #FIXED ''
-  type NMTOKEN #REQUIRED>
-
+  type (contract|permanent) #REQUIRED>
 <!ELEMENT Name (#PCDATA)>
-<!ATTLIST Name
-  xmlns CDATA #FIXED ''>
-
 <!ELEMENT Id (#PCDATA)>
-<!ATTLIST Id
-  xmlns CDATA #FIXED ''>
-
 <!ELEMENT Age (#PCDATA)>
-<!ATTLIST Age
-  xmlns CDATA #FIXED ''>
